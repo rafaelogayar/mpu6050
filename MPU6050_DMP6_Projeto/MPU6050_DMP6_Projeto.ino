@@ -237,7 +237,9 @@ void loop() {
             Serial.print(q.y);
             Serial.print("\t");
             Serial.println(q.z);
-            
+            Serial.print(currentMillis / 1000);
+            Serial.println(" segundos");
+            delay(250);
             
         #endif
 
