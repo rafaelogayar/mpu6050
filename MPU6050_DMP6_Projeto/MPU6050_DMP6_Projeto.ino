@@ -31,7 +31,12 @@
 #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
     #include "Wire.h"
 #endif
- 
+#include <SD.h>
+#include <SPI.h>
+
+File myFile;
+
+int pinoSS = 4; // Pin 53 para Mega / Pin 10 para UNO 
 // class default I2C address is 0x68
 // specific I2C addresses may be passed as a parameter here
 // AD0 low = 0x68 (default for SparkFun breakout and InvenSense evaluation board)
@@ -72,7 +77,7 @@ uint8_t teapotPacket[14] = { '$', 0x02, 0,0, 0,0, 0,0, 0,0, 0x00, 0x00, '\r', '\
 // ================================================================
 // ===               INTERRUPT DETECTION ROUTINE                ===
 // ================================================================
-
+float k = 0;
 volatile bool mpuInterrupt = false;     // indicates whether MPU interrupt pin has gone high
 void dmpDataReady() {
     mpuInterrupt = true;
@@ -82,6 +87,17 @@ void dmpDataReady() {
 // ================================================================
 
 void setup() {
+  pinMode(pinoSS, OUTPUT); // Declara pinoSS como saída
+
+    if (SD.begin()) { // Inicializa o SD Card
+    Serial.println("SD Card pronto para uso."); // Imprime na tela
+    }
+    
+    else {
+    Serial.println("Falha na inicialização do SD Card.");
+    return;
+    }
+
     // join I2C bus (I2Cdev library doesn't do this automatically)
     #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
         Wire.begin();
@@ -162,6 +178,7 @@ void setup() {
 
     // configure LED for output
     pinMode(LED_PIN, OUTPUT);
+    
 }
 
 
@@ -177,19 +194,31 @@ void loop() {
     // read a packet from FIFO
     if (mpu.dmpGetCurrentFIFOPacket(fifoBuffer)) { // Get the Latest packet 
         #ifdef OUTPUT_READABLE_QUATERNION
-            // display quaternion values in easy matrix form: w x y z
+            // display o values in easy matrix form: w x y z
             mpu.dmpGetQuaternion(&q, fifoBuffer);
-            Serial.print("quat\t");
+            k = q.x;
+            
+            String w = String(k);
+            Serial.println(w); 
+            myFile = SD.open("usina7.txt", FILE_WRITE); // Cria / Abre arquivo .tx
+            if (myFile) { // Se o Arquivo abrir imprime:
+              Serial.println("salvando"); // Imprime na tela
+              myFile.println(w); // Escreve no Arquivo
+              myFile.close(); // Fecha o Arquivo após escrever
+              
+              } 
+           /* Serial.print("q\t");
             Serial.print(q.w);
             Serial.print("\t");
             Serial.print(q.x);
             Serial.print("\t");
             Serial.print(q.y);
             Serial.print("\t");
-            Serial.println(q.z);
-            Serial.print(currentMillis / 1000);
-            Serial.println("Segundos Decorridos");
-            delay(250);
+            Serial.print(q.z);
+            Serial.print(" S ");
+            Serial.println(currentMillis / 1000);
+            */
+            //delay(250);
             
         #endif
 
