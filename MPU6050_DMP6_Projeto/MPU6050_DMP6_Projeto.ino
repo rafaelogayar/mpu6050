@@ -128,10 +128,10 @@ void setup() {
     Serial.println(mpu.testConnection() ? F("MPU6050 connection successful") : F("MPU6050 connection failed"));
 
     // wait for ready
-    Serial.println(F("\nSend any character to begin DMP programming and demo: "));
+    /*Serial.println(F("\nSend any character to begin DMP programming and demo: "));
     while (Serial.available() && Serial.read()); // empty buffer
     while (!Serial.available());                 // wait for data
-    while (Serial.available() && Serial.read()); // empty buffer again
+    while (Serial.available() && Serial.read()); // empty buffer again*/
 
     // load and configure the DMP
     Serial.println(F("Initializing DMP..."));
@@ -200,7 +200,7 @@ void loop() {
             
             String w = String(k);
             Serial.println(w); 
-            myFile = SD.open("usina7.txt", FILE_WRITE); // Cria / Abre arquivo .tx
+            myFile = SD.open("usina8.txt", FILE_WRITE); // Cria / Abre arquivo .tx
             if (myFile) { // Se o Arquivo abrir imprime:
               Serial.println("salvando"); // Imprime na tela
               myFile.println(w); // Escreve no Arquivo
