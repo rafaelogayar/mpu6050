@@ -1,7 +1,4 @@
-// I2C device class (I2Cdev) esboço Arduino de demonstração para classe MPU6050 usando DMP (MotionApps v2.0)
-// 21/06/2012 por Jeff Rowberg <jeff@rowberg.net>
-// As atualizações devem (espero) estar sempre disponíveis em https://github.com/jrowberg/i2cdevlib
-//
+
 // Changelog:
 // 08/07/2019 - Adicionada calibração automática e gerador de deslocamento
 // - e sequência de recuperação FIFO alterada para evitar o uso de código de bloqueio
