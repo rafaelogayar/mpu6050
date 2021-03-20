@@ -3,6 +3,7 @@
 // As atualizações devem (espero) estar sempre disponíveis em https://github.com/jrowberg/i2cdevlib
 //
 // Changelog:
+// 20/03/2020 - Gravar dados no cartao SD
 // 08/07/2019 - Adicionada calibração automática e gerador de deslocamento
 // - e sequência de recuperação FIFO alterada para evitar o uso de código de bloqueio
 // 18/04/2016 - Eliminado um loop infinito potencial
