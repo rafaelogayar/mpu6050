@@ -1,5 +1,5 @@
 
-// Changelog:
+// Changelog: novo codigo
 //      2019-07-08 - Added Auto Calibration and offset generator
 //		   - and altered FIFO retrieval sequence to avoid using blocking code
 //      2016-04-18 - Eliminated a potential infinite loop
