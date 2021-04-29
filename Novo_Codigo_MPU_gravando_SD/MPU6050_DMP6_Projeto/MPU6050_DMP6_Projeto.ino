@@ -1,22 +1,9 @@
-
-// Changelog:
-// 20/03/2020 - Gravar dados no cartao SD
-// 08/07/2019 - Adicionada calibração automática e gerador de deslocamento
-// - e sequência de recuperação FIFO alterada para evitar o uso de código de bloqueio
-// 18/04/2016 - Eliminado um loop infinito potencial
-// 2013-05-08 - adicionado suporte contínuo Fastwire
-// - nota adicionada sobre calibração do giroscópio
-// 2012-06-21 - adicionada nota sobre o Arduino 1.0.1 + erro de compatibilidade do Leonardo
-// 20/06/2012 - manipulação de estouro de FIFO aprimorada e processo de leitura simplificado
-// 2012-06-19 - código de inicialização DMP completamente reorganizado e simplificação
-// 2012-06-13 - extrair dados do giroscópio e aceleração do pacote FIFO em vez de ler diretamente
-// 2012-06-09 - conserta a sequência de leitura FIFO quebrada e altera a detecção de interrupção para RISING
-// 2012-06-05 - adicionar saída de aceleração do quadro de referência inicial compensada pela gravidade
-// - adicionar arquivo auxiliar de matemática 3D ao esboço de exemplo DMP6
-// - adicionar saída de Euler e formatos de saída Yaw / Pitch / Roll
-// 04/06/2012 - remover compensação de compensação de aceleração para obter melhores resultados (obrigado Sungon Lee)
-// 2012-06-01 - corrigiu a sensibilidade do giroscópio para 2.000 graus / s em vez de 250
-// 2012-05-30 - inicialização DMP básica funcionando
+/*    
+ *  • 10/01/2021 - Adicionada calibrarão automática e gerador de deslocamento;
+    • 02/02/2021 - Sequência de recuperação FIFO alterada para evitar o uso de código de bloqueio (Elimina tempo de envio de dados);
+    • 22/02/2021 - Eliminado um loop infinito potencial;
+    • 15/03/2021 - adicionada nota sobre o Arduino 1.8.13 + erro de compatibilidade do Arduino Nano
+*/
 
 // I2Cdev and MPU6050 must be installed as libraries, or else the .cpp/.h files
 // for both classes must be in the include path of your project
